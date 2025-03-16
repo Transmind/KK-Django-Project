@@ -1,0 +1,43 @@
+{% extends 'kk_logs/base.html' %}
+
+{% block content %}
+
+
+    <p><a href="{% url 'kk_logs:topic' topic.id %}">{{ topic }}</a></p>
+
+
+    <p>Edit entry:</p>
+    <form action ="{% url 'kk_logs:edit_entry' entry.id %}" method = 'post'>
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button name ='submit'>Save changes</button>
+    </form>
+
+    
+    <script src="https://cdn.tiny.cloud/1/001hzf5bsyzl4x2lh193bu077mc9h8zqd6teu2kibn2vkx3w/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#id_content',  // Target the specific textarea by its ID
+            plugins: 'paste image',   // Enable plugins for pasting and image handling
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | image',  // Basic toolbar
+            menubar: false,           // Hide the menubar for simplicity
+            paste_data_images: true,  // Allow pasting images as base64 data URLs
+            images_upload_handler: function (blobInfo, success, failure) {
+                // Embed images as base64 data URLs (default behavior for this example)
+                success('data:' + blobInfo.blob().type + ';base64,' + blobInfo.base64());
+            },
+            height: 400,              // Set editor height
+            // Restrict allowed HTML tags and attributes for security
+            valid_elements: 'p,br,strong/b,em/i,u,ol,ul,li,h1,h2,h3,a[href|title],img[src|alt|style],div[style],span[style]',
+            valid_styles: {
+                '*': 'text-align,margin,padding,color,background-color,font-size,font-family'
+            },
+            paste_block_drop: true,   // Prevent drag-and-drop of unsafe content
+            paste_preprocess: function (plugin, args) {
+                // Strip dangerous content like scripts
+                args.content = args.content.replace(/<script.*?>.*?<\/script>/gi, '');
+            }
+        });
+    </script>
+    
+{% endblock content %}

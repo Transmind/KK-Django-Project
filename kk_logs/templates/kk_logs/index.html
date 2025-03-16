@@ -1,0 +1,34 @@
+
+{% extends 'kk_logs/base.html' %}
+
+
+{% block page_header %}
+ 
+
+    <div class="p-3 mb-4 bg-light border rounded-3">
+        <div class="container-fluid py-4"
+            
+            <p class="lead" style="font-size: 1.2rem;">
+                Everyone is learning, all the time. <br>
+                Passively or actively, <br>
+                Hard way or easy way. <br>
+                So, keep a list of the things you are learning about. <br>
+                Whenever you learn something new about a topic, <br>
+                make an entry summarizing what you've learned and how.<br>
+            </p>
+            
+            <a class="btn btn-primary btn-lg mt-1"
+                href="{% url 'accounts:register' %}">Register &raquo;</a>
+        </div>
+    </div>
+
+    
+
+{% endblock page_header %}
+
+<!---
+{% block content %}
+    <p>Learning Log helps you keep track of your learning, for any topic you're interested in.</p>
+{% endblock content %}  
+<p> 88888888888888 </p> 
+-->

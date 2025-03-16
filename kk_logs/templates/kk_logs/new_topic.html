@@ -1,0 +1,20 @@
+{% extends 'kk_logs/base.html' %}
+
+{% block content %}
+
+    <p>Add a new topic:</p>
+
+    <form action ="{% url 'kk_logs:new_topic' %}" method = 'post'>
+        {% csrf_token %}
+        {{ form.as_div }}
+        
+        <div>
+            <label for="id_public">make this topic public:</label>
+            <input type="checkbox" id="id_public" name="public">
+        </div>    
+        
+        <button name ="submit">Add topic</button>
+
+    </form>
+
+{% endblock content %}

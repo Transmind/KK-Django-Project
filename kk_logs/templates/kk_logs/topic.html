@@ -1,0 +1,24 @@
+{% extends 'kk_logs/base.html' %}
+
+{% block page_header %}
+    <h1>{{ topic.text }}</h1>
+{% endblock page_header %}
+
+{% block content %}
+    <p>
+        <a href="{% url 'kk_logs:new_entry' topic.id %}">Add new entry</a>
+    </p>
+ 
+    {% for entry in entries %}
+        <div class="card mb-3">
+            <h4 class="card-header">
+                {{ entry.date_added|date:'M d, Y H:i' }} <span style="color: gray; font-size: smaller;"> by </span><span style="color: gray; font-size: smaller;">{{ entry.owner }}  </span>
+                <small><a href="{% url 'kk_logs:edit_entry' entry.id %}">edit entry</a></small>
+            </h4>
+            <div class="card-body">{{ entry.content|safe }}</div>
+        </div>    
+    {% empty %}
+        <p>There are no entries for this topic yet. </p>
+    {% endfor %}
+
+{% endblock content %}
