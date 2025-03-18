@@ -2,7 +2,7 @@
 # KK Django Project
 A web-based blogging application that enables users to embed images seamlessly for your logs.
 
-This Django web application is built upon the foundational framework presented in Chapters 18 through 20 of <Python Crash Course, 3rd Edition>. This app incorporates the TinyMCE rich-text editor to provide users with an intuitive interface for embedding images within their content. 
+This Django web application is built upon the foundational framework presented in Chapters #18 through #20 of <Python Crash Course, 3rd Edition>. This app incorporates the TinyMCE rich-text editor to provide users with an intuitive interface for embedding images within their content. 
 
 Below are the items added upon the basic framework outlined by the book.  
 * Integrated the TinyMCE rich-text editor to enable users to input rich content, including the ability to embed images.
@@ -41,6 +41,6 @@ Below are the items added upon the basic framework outlined by the book.
 
 7. Explore "http://localhost:8000/" in your broswer to test the app locally.
 
-8. Push the app to Platform.sh, and having fun with friends! 
+8. Push the app to Platform.sh, have fun with friends! 
    
-   Please to refer chapter 20 of the book for detailed instructions of pushing project onto platform.sh platform. 
+   Please refer to chapter #20 of the book for detailed instructions of pushing project onto platform.sh platform. 
