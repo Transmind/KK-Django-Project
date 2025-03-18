@@ -41,6 +41,6 @@ Below are the items added upon the basic framework outlined by the book.
 
 7. Explore "http://localhost:8000/" in your broswer to test the app locally.
 
-8. Push the app to Platform.sh. Having fun! 
+8. Push the app to Platform.sh, and having fun with friends! 
    
-   Please to refer chapter 20 of the book for detailed instructions of pushing project onto platform. 
+   Please to refer chapter 20 of the book for detailed instructions of pushing project onto platform.sh platform. 
