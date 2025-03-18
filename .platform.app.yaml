@@ -4,6 +4,7 @@ type: "python:3.10"
 relationships:
     database: "db:postgresql"
 
+#Added by Ken for fixed DATABASE_URL, please adjust to your actual configuration if needed.
 variables:
     env:
         DATABASE_URL: "postgresql://main:main@database.internal:5432/main"
