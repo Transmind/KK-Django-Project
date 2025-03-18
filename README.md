@@ -1,11 +1,16 @@
 
 # KK Django Project
-A Django webapp based on the code framework setout with chapter 18~20 by the book of <Python Crash Cource 3rd Edition>. In addtion, KK DJango Project added a few items outlined below.
+A web-based blogging application that enables users to upload and embed images seamlessly.
+This Django web application is built upon the foundational framework presented in Chapters 18 through 20 of Python Crash Course, 3rd Edition. This app incorporates the TinyMCE rich-text editor to provide users with an intuitive interface for embedding images within their content. Below are items added upon the basic feature by the book. 
  
- * Integrated TinyMCE rich-text edit, to allow users to enter rich contents into entry, such as pastings pictures 
-    (Note, I am using a 14 days free trial key that expires on March 29, 2025. After this day, please apply your free key from Tiny to test the function out. You only need to edit new_entry.html and edit_entry.html by refreshing the key string. Please see the comment in these two files)
- * Allow user to share public topics for all viewers of the site.
- * Modified kk_project/settings.py to avoid using hard-coded secret key. 
+* Integrated the TinyMCE rich-text editor to enable users to input rich content, including the ability to embed images.
+    (Note: This implementation currently utilizes a 14-day free trial key, valid until March 29, 2025. After this date, please replace it with your own free key from TinyMCE to continue testing this feature. To update the key, modify the new_entry.html and edit_entry.html templates by refreshing the key string as indicated in the comments within these files.)
+
+* Enabled users to share public topics accessible to all site visitors.  
+
+* Updated kk_project/settings.py to eliminate the use of a hard-coded secret key,  enhancing security.
+
+
 
 
 
