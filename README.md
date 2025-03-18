@@ -17,7 +17,7 @@ This Django web application is built upon the foundational framework presented i
 ## Setup Instructions
 1. Clone the repository:
 
-   git clone https://github.com/yourusername/my-django-project.git
+   git clone https://github.com/Transmind/KK-Django-Project.git
    cd my-django-project
 
 2. Create and activate a virtual environment:
