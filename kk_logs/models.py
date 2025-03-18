@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Topic(models.Model):
     
-    #add the public attribute by Ken
+    #add the public attribute by Ken, Mar 2025
     public = models.BooleanField(default=False)
     
     text = models.CharField(max_length=200)
@@ -22,11 +22,12 @@ class Entry(models.Model):
 
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
 
-    #modify by Ken to allow user to enter rich contents
-    #text = models.TextField()
+    #modified by Ken to allow users to submit rich contents
     content = models.TextField()
 
     date_added = models.DateTimeField(auto_now_add=True)
+
+    #added entry owner attribute by Ken
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
@@ -34,7 +35,6 @@ class Entry(models.Model):
 
     def __str__(self):
         
-        #modify by Ken to allow user to enter rich contents
-        #return f"{self.content.get('text', '')[:50]}..."
+        #modified by Ken to allow users to submit rich contents
         return f"{self.content[:50]}..." 
 
