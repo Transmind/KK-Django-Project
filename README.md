@@ -37,6 +37,6 @@ A Django webapp based on the code framework setout with chapter 18~20 by the boo
 
 7. Explore "http://localhost:8000/" in your broswer to test the app locally.
 
-8. Push the app to Platform.sh 
+8. Push the app to Platform.sh. Having fun! 
    
    Please to refer chapter 20 of the book for detailed instructions of pushing project onto platform. 
