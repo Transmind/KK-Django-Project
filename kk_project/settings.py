@@ -117,8 +117,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # Added below two lines by Ken to serve static files in production
-STATICFILES_DIRS = [BASE_DIR / 'static']  
-STATIC_ROOT = BASE_DIR / 'staticfiles'   
+STATICFILES_DIRS = [BASE_DIR / 'staticfiles']  
+STATIC_ROOT = BASE_DIR / 'static'   
 
 # Added below two lines by Ken for images upload
 MEDIA_URL = '/media/'

@@ -33,7 +33,7 @@ Below are the items added upon the basic framework outlined by the book.
 4. Apply migrations and load initial data. Run below command in the folder containing "manage.py".
 
    python manage.py migrate
-
+   python manage.py collectstatic
 
 6. Run the development server:
 
