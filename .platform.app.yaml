@@ -31,6 +31,10 @@ mounts:
     "logs":
         source: local
         source_path: logs
+    
+    "media/uploads":
+        source: local
+        source_path: media/uploads
 
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
@@ -42,7 +46,7 @@ hooks:
         mkdir logs
         python manage.py collectstatic
         rm -rf logs
-        mkdir -p "$BASE_DIR/media/uploads"
+
     deploy: |
         python manage.py migrate
 
