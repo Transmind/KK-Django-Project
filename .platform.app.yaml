@@ -22,6 +22,9 @@ web:
             root: "static"
             expires: 1h
             allow: true
+        "/media/":
+        root: "media"
+        allow: true
 
 # The size of the persistent disk of the application (in MB).
 disk: 512
