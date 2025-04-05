@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, JsonResponse
+from django.core.files.storage import default_storage
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
@@ -96,4 +97,17 @@ def edit_entry(request, entry_id):
             return redirect('kk_logs:topic', topic_id=topic.id)
     
     context = {'entry': entry, 'topic': topic, 'form': form}
+    #print(entry.content)
     return render(request, 'kk_logs/edit_entry.html', context)
+
+# Added by Ken for image upload
+@login_required
+def upload_image(request):
+    
+    if request.method == 'POST' and request.FILES.get('upload'):
+        file = request.FILES['upload']
+        file_path = default_storage.save(f'uploads/{file.name}', file)
+        file_url = default_storage.url(file_path)
+        return JsonResponse({'url': file_url})
+    
+    return JsonResponse({'error': {'message': 'Upload failed'}}, status=400)

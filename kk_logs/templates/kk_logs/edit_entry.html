@@ -1,4 +1,21 @@
 {% extends 'kk_logs/base.html' %}
+{% load static %}
+
+{% block title %}KK Log{% endblock title %}
+
+{% block head %}
+
+<!--
+    <link rel="icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/120x120.png" sizes="120x120">
+    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/152x152.png" sizes="152x152">
+    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/167x167.png" sizes="167x167">
+    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/180x180.png" sizes="180x180">
+-->
+    <link rel="stylesheet" href="{% static 'ckeditor/style.css' %}">
+    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor5/ckeditor5.css' %}">
+{% endblock head %}
 
 {% block content %}
 
@@ -7,40 +24,67 @@
 
 
     <p>Edit entry:</p>
-    <form action ="{% url 'kk_logs:edit_entry' entry.id %}" method = 'post'>
+    <form action="{% url 'kk_logs:edit_entry' entry.id %}" method="post" id="entry-form">
         {% csrf_token %}
-        {{ form.as_div }}
+        <!-- Load CKEditor  -->
+        <div class="main-container">
+			<div class="editor-container editor-container_classic-editor editor-container_include-word-count" id="editor-container">
+				<div class="editor-container__editor">
+                    {{ form.content }}
+                </div>
+				<div class="editor_container__word-count" id="editor-word-count"></div>
+			</div>
+		</div>
         <button name ='submit'>Save changes</button>
     </form>
 
-    <!--My TinyMCEm free trial ends on March 29, 2025. Please apply your free trial key to test it out.
-    Use your free trial key to replace my key '001hzf5bsyzl4x2lh193bu077mc9h8zqd6teu2kibn2vkx3w' used. 
-    -->
-    
-    <script src="https://cdn.tiny.cloud/1/001hzf5bsyzl4x2lh193bu077mc9h8zqd6teu2kibn2vkx3w/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#id_content',  // Target the specific textarea by its ID
-            plugins: 'paste image',   // Enable plugins for pasting and image handling
-            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | image',  // Basic toolbar
-            menubar: false,           // Hide the menubar for simplicity
-            paste_data_images: true,  // Allow pasting images as base64 data URLs
-            images_upload_handler: function (blobInfo, success, failure) {
-                // Embed images as base64 data URLs (default behavior for this example)
-                success('data:' + blobInfo.blob().type + ';base64,' + blobInfo.base64());
-            },
-            height: 400,              // Set editor height
-            // Restrict allowed HTML tags and attributes for security
-            valid_elements: 'p,br,strong/b,em/i,u,ol,ul,li,h1,h2,h3,a[href|title],img[src|alt|style],div[style],span[style]',
-            valid_styles: {
-                '*': 'text-align,margin,padding,color,background-color,font-size,font-family'
-            },
-            paste_block_drop: true,   // Prevent drag-and-drop of unsafe content
-            paste_preprocess: function (plugin, args) {
-                // Strip dangerous content like scripts
-                args.content = args.content.replace(/<script.*?>.*?<\/script>/gi, '');
-            }
-        });
-    </script>
-    
 {% endblock content %}
+
+{% block scripts %}
+
+    <!-- CKEditor scripts -->
+    <script type="importmap">
+    {
+        "imports": {
+            "ckeditor5": "{% static 'ckeditor/ckeditor5/ckeditor5.js' %}",
+            "ckeditor5/": "{% static 'ckeditor/ckeditor5/' %}"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as mainConfig from "{% static 'ckeditor/main.js' %}";
+
+        const editorConfig = {
+            ...mainConfig.editorConfig,
+        };
+        delete editorConfig.initialData;
+
+        console.log('Starting CKEditor initialization');
+
+        mainConfig.ClassicEditor
+            .create(document.querySelector('#id_content'), editorConfig)
+            .then(editor => {
+                window.editor = editor;
+                
+                // Update textarea on form submit
+                document.getElementById('entry-form').addEventListener('submit', function() {
+                    const updatedData = editor.getData();
+                    document.getElementById('id_content').value = updatedData;
+                });
+
+                // Attach word count
+                const wordCount = editor.plugins.get('WordCount');
+                document.querySelector('#editor-word-count').appendChild(wordCount.wordCountContainer);
+
+                // Debug: Log model changes to verify resize
+                editor.model.document.on('change:data', () => {
+                    console.log('Model data changed:', editor.getData());
+                });
+            })
+            .catch(error => {
+                console.error('CKEditor initialization failed:', error);
+            });
+    </script>
+{% endblock scripts %}
+    
