@@ -22,6 +22,7 @@ web:
             root: "static"
             expires: 1h
             allow: true
+            passthru: false
         "/media/":
             root: "media"
             allow: true
@@ -38,6 +39,10 @@ mounts:
     "media/uploads":
         source: local
         source_path: media/uploads
+
+    "/static":
+        source: local
+        source_path: "static"
 
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
