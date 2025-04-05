@@ -42,6 +42,7 @@ hooks:
         mkdir logs
         python manage.py collectstatic
         rm -rf logs
+        mkdir -p "$BASE_DIR/media/uploads"
     deploy: |
         python manage.py migrate
 
