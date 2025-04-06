@@ -15,6 +15,7 @@ Note: This implementation currently uses CKEditor under the GPL (General Public 
 1. Clone the repository:
 
    git clone https://github.com/Transmind/KK-Django-Project.git
+   
    cd my-django-project
 
 2. Create and activate a virtual environment:
