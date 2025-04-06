@@ -42,4 +42,4 @@ Note: This implementation currently uses CKEditor under the GPL (General Public 
    
    Please refer to chapter #20 of the book for detailed instructions of pushing project onto platform.sh platform. 
 
-9. To manage or clean up users, topics, or entries, run the python manage.py createsuperuser command to create an administrator account. Once created, you can log in to the Django admin interface at http://localhost:8000/admin.
+9. To manage or clean up users, topics, or entries, use the python manage.py createsuperuser command to create an administrator account. Once the account is created, you can access the Django admin interface locally at http://localhost:8000/admin or at http://your_web_addr/admin if the application has already been deployed to Platform.sh.
